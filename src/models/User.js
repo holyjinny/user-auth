@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 import { compare, hash } from 'bcryptjs';
-import { APP_SECRET } from '../constants';
+import { SECRET } from '../constants';
 import { randomBytes } from 'crypto';
 import { sign } from 'jsonwebtoken';
 import { pick } from 'lodash';
@@ -43,7 +43,7 @@ const UserSchema = new Schema(
     { timestamps: true }
 );
 
-UserSchema.pre('save', async function (next) {
+UserSchema.pre("save", async function (next) {
     let user = this;
     if (!user.isModified("password")) return next();
     user.password = await hash(user.password, 10);
@@ -61,18 +61,18 @@ UserSchema.methods.generateJWT = async function () {
         name: this.name,
         id: this._id,
     };
-    return await sign(payload, APP_SECRET, { expiresIn: '1 day' });
+    return await sign(payload, SECRET, { expiresIn: "1 day" });
 };
 
 UserSchema.methods.generatePasswordReset = function () {
     this.resetPasswordExpiresIn = Date.now() + 36000000;
-    this.resetPasswordToken = randomBytes(20).toString('hex');
+    this.resetPasswordToken = randomBytes(20).toString("hex");
 };
 
 UserSchema.methods.getUserInfo = function () {
-    return pick(this, ["_id", "username", "email", "name"]);
+    return pick(this, ["_id", "username", "email", "name", "verified"]);
 };
 
-const User = model('users', UserSchema);
+const User = model("users", UserSchema);
 
 export default User;
