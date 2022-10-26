@@ -9,7 +9,7 @@ const router = Router();
 /**
  * @description To create profile of the authenticated User
  * @api /profiles/api/create-profile
- * @access Private
+ * @access private
  * @type POST <multipart-form> request
  */
 
@@ -44,7 +44,7 @@ router.post(
 /**
  * @description To get the authenticated user's profile
  * @api /profiles/api/my-profile
- * @access Private
+ * @access private
  * @type GET
  */
 
@@ -77,7 +77,7 @@ router.get('/api/my-profile', userAuth, async (req, res) => {
 /**
  * @description To update authenticated user's profile
  * @api /profiles/api/update-profile
- * @access Private
+ * @access private
  * @type PUT <multipart-form> request
  */
 
@@ -105,8 +105,8 @@ router.put('/api/update-profile', userAuth, uploader.single('avatar'), async (re
 
 /**
  * @description To get user's profile with the username
- * @api /profiles/api/profile-user/:username'
- * @access Public
+ * @api /profiles/api/profile-user/:username
+ * @access public
  * @type GET
  */
 

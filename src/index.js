@@ -12,6 +12,7 @@ import { DB, PORT } from './constants';
 // Import Router
 import userApis from './apis/users';
 import profileApis from './apis/profiles';
+import postApis from './apis/posts';
 
 // Import passport
 require('./middlewares/passport-middleware');
@@ -28,6 +29,7 @@ app.use(express.static(join(__dirname, './uploads')));
 // Inject Sub router and apis
 app.use('/users', userApis);
 app.use('/profiles', profileApis);
+app.use('/posts', postApis);
 
 const main = async () => {
     try {

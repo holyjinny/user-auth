@@ -13,7 +13,7 @@ const router = Router();
 /**
  * @description To create a new User Account
  * @api /users/api/register
- * @access Public
+ * @access public
  * @type POST
  */
 
@@ -76,7 +76,7 @@ router.post(
 /**
  * @description To verify a new user's account via email
  * @api /users/verify-now/:verificationCode
- * @access PUBLIC <Only Via email>
+ * @access public <Only Via email>
  * @type GET
  */
 
@@ -103,7 +103,7 @@ router.get('/verify-now/:verificationCode', async (req, res) => {
 /**
  * @description To authenticate an user and get auth token
  * @api /users/api/authenticate
- * @access PUBLIC
+ * @access public
  * @type POST
  */
 
@@ -149,7 +149,7 @@ router.post(
 /**
  * @description To get the authenticated user's profile
  * @api /users/api/authenticate
- * @access Private
+ * @access private
  * @type GET
  */
 
@@ -164,8 +164,8 @@ router.get('/api/authenticate', userAuth, async (req, res) => {
 /**
  * @description To initiate the password reset process
  * @api /users/api/reset-password
- * @access Public
- * @type POST
+ * @access public
+ * @type PUT
  */
 
 router.put(
